@@ -19,7 +19,7 @@ Scala interface for 511.org real time transit API
           /* LOCAL CALTRAIN is departing from Millbrae Caltrain Station in 10 minutes */
         }
       }
-      // Some routes also have directions
+      // Some routes also have directions (TO SAN FRANCISCO, TO SAN JOSE)
       r.directions.foreach{ dir: Direction =>
         // Directions also have stops
         dir.stops.foreach{ s: Stop =>
