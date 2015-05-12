@@ -32,3 +32,5 @@ Scala interface for 511.org real time transit API
     }
   }
 ```
+
+#### Get your API token [here](http://www.511.org/developer-resources_transit-api.asp)
