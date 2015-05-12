@@ -1,4 +1,4 @@
-name := "rt-api"
+name := "scala-511"
 
 organization := "org.five11"
 
