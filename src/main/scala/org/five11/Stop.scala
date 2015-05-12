@@ -19,13 +19,7 @@ class Stop(val route: Route, val direction: Direction, raw: xml.Node) {
       "StopList" \\ "Stop" \\ "DepartureTimeList" \\ "DepartureTime").map( new Departure(this, _) )
   }
 
-  override def toString = {
-    if (direction != null) {
-      Array(direction.toString, name).mkString(" ")
-    } else {
-      name
-    }
-  }
+  override def toString = name
 }
 
 object Stop {
