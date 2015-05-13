@@ -14,7 +14,9 @@ class Route(val agency: Agency, raw: xml.Node) {
       val req = Stop.req.param("token", token).param("routeIDF", routeIdf).asString
 
       val body = XML.loadString(req.body)
-      (body \\ "AgencyList" \\ "Agency" \\ "RouteList" \\ "Route" \\ "StopList" \\ "Stop").map( new Stop(this, _) )
+      (body \\ "AgencyList" \\ "Agency" \\
+        "RouteList" \\ "Route" \\
+          "StopList" \\ "Stop").map{ new Stop(this, _) }.to[Vector]
     } else {
       directions.map{ _.stops }.flatten
     }

@@ -13,7 +13,8 @@ class Agency(raw: xml.Node) {
       param("agencyName", name).asString
 
     val body = XML.loadString(req.body)
-    (body \\ "AgencyList" \\ "Agency" \\ "RouteList" \\ "Route").map( new Route(this, _) )
+    (body \\ "AgencyList" \\ "Agency" \\
+      "RouteList" \\ "Route").map{ new Route(this, _) }.to[Vector]
   }
 
   override def toString = name

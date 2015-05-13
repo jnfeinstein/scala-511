@@ -8,7 +8,7 @@ class Api {
     val req = Agency.req.param("token", token).asString
 
     val body = XML.loadString(req.body)
-    (body \\ "AgencyList" \\ "Agency").map( new Agency(_) )
+    (body \\ "AgencyList" \\ "Agency").map{ new Agency(_) }.to[Vector]
   }
 }
 

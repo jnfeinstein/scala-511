@@ -16,7 +16,8 @@ class Stop(val route: Route, val direction: Direction, raw: xml.Node) {
 
     val body = XML.loadString(req.body)
     (body \\ "AgencyList" \\ "Agency" \\ "RouteList" \\ "Route" \\
-      "StopList" \\ "Stop" \\ "DepartureTimeList" \\ "DepartureTime").map( new Departure(this, _) )
+      "StopList" \\ "Stop" \\
+        "DepartureTimeList" \\ "DepartureTime").map{ new Departure(this, _) }.to[Vector]
   }
 
   override def toString = name
