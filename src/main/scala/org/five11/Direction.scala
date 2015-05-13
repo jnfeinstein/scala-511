@@ -13,7 +13,7 @@ class Direction(val route: Route, raw: xml.Node) {
 
     val body = XML.loadString(req.body)
     (body \\ "AgencyList" \\ "Agency" \\ "RouteList" \\ "Route" \\
-      "StopList" \\ "Stop").map{ new Stop(route, this, _) }.to[Vector]
+      "StopList" \\ "Stop").map{ new Stop(route, this, _) }
   }
 
   override def toString = name

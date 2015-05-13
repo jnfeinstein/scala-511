@@ -11,13 +11,12 @@ class Stop(val route: Route, val direction: Direction, raw: xml.Node) {
 
   def departures(implicit token: Api.token) = {
     val req = Departure.req.param("token", token).
-      param("agencyName", route.agency.name).
-      param("stopName", name).asString
+      param("stopcode", code).asString
 
     val body = XML.loadString(req.body)
     (body \\ "AgencyList" \\ "Agency" \\ "RouteList" \\ "Route" \\
       "StopList" \\ "Stop" \\
-        "DepartureTimeList" \\ "DepartureTime").map{ new Departure(this, _) }.to[Vector]
+        "DepartureTimeList" \\ "DepartureTime").map{ new Departure(this, _) }
   }
 
   override def toString = name

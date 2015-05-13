@@ -11,6 +11,6 @@ class Departure(val stop: Stop, raw: xml.Node) {
 }
 
 object Departure {
-  val part = "GetNextDeparturesByStopName.aspx"
+  val part = "GetNextDeparturesByStopCode.aspx"
   val req = Http(Api.url + part)
 }

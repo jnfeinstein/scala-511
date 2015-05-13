@@ -14,7 +14,7 @@ class Agency(raw: xml.Node) {
 
     val body = XML.loadString(req.body)
     (body \\ "AgencyList" \\ "Agency" \\
-      "RouteList" \\ "Route").map{ new Route(this, _) }.to[Vector]
+      "RouteList" \\ "Route").map{ new Route(this, _) }
   }
 
   override def toString = name
