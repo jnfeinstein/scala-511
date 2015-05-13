@@ -8,7 +8,7 @@ class Agency(raw: xml.Node) {
   val hasDirecton = (raw \ "@HasDirecton").text
   val mode = (raw \ "@Mode").text
 
-  def routes(implicit token: Api.token) = {
+  def routes(implicit token: Api.token): Seq[Route] = {
     val req = Route.req.param("token", token).
       param("agencyName", name).asString
 

@@ -8,7 +8,7 @@ class Route(val agency: Agency, raw: xml.Node) {
   val code = (raw \ "@Code").text
   val directions = (raw \\ "RouteDirectionList" \\ "RouteDirection").map{ new Direction(this, _) }
 
-  def stops(implicit token: Api.token) = {
+  def stops(implicit token: Api.token): Seq[Stop] = {
     if (directions.isEmpty) {
       val routeIdf = Array(agency.name, code).mkString("~")
       val req = Stop.req.param("token", token).param("routeIDF", routeIdf).asString

@@ -7,7 +7,7 @@ class Direction(val route: Route, raw: xml.Node) {
   val name = (raw \ "@Name").text
   val code = (raw \ "@Code").text
 
-  def stops(implicit token: Api.token) = {
+  def stops(implicit token: Api.token): Seq[Stop] = {
     val routeIdf = Array(route.agency.name, route.code, code).mkString("~")
     val req = Stop.req.param("token", token).param("routeIDF", routeIdf).asString
 
