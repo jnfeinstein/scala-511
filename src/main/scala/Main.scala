@@ -2,19 +2,17 @@
 import org.five11._
 
 object Main {
-  implicit val token: Api.token = System.getenv("TOKEN")
+  val token = System.getenv("TOKEN")
 
-  val api = new Api
+  val api = new Api(token)
 
   def main(args: Array[String]): Unit = {
 
     val caltrain = api.agencies.find{ _.name.toLowerCase == "caltrain" }.get
 
-    caltrain.routes.map{ r: Route =>
-      r.directions.map{ d: Direction =>
-        d.stops.map{ s: Stop =>
-          println(s.departures)
-        }
+    caltrain.stops.map{ s: Stop =>
+      s.departures.foreach{ d: Departure =>
+        println( Array(d.route.name, d.direction.name, d.stop.name, d.time).mkString(" / ") )
       }
     }
   }
